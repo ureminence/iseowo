@@ -1,10 +1,10 @@
 "use client"
+import Link from "next/link";
 import {useState} from "react"
 import { GoDash } from "react-icons/go";
 import { Bebas_Neue } from "next/font/google";
 import { HiMenuAlt3 } from "react-icons/hi";
 
-import Link from "next/link";
 const bebasNeue = Bebas_Neue({
     subsets: ["latin"],
     weight: "400"
