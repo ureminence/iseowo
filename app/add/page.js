@@ -14,7 +14,7 @@ const rules = yup.object().shape({
     state: yup.string().notOneOf(["none"]),
     lga: yup.string().notOneOf(["none"]),
     business_description: yup.string().required().min(20),
-    website: yup.string().max(60)
+    website: yup.string().url() .nullable(),
 });
 
 
@@ -83,6 +83,46 @@ export default function page() {
                             {touched.sub_category && errors.sub_category ? <span className="text-xs text-red-400">{errors.category}</span> : null}
                         </div>
                     </div>
+
+
+
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="mb-3">
+                            <TextField
+                                select
+                                SelectProps={{ native: true, }}
+                                id="state"
+                                label="state"
+                                variant="outlined"
+                                className="w-full"
+                                onChange={handleChange}>
+                                <option value="none">choose state</option>
+                                {ngstates.map(sta => <option value={sta.label} key={sta.label}>{sta.label}</option>)}
+                            </TextField>
+                            {touched.state && errors.state ? <span className="text-xs text-red-400">{errors.state}</span> : null}
+                        </div>
+                        <div className="mb-3">
+                            <TextField
+                                select
+                                SelectProps={{ native: true, }}
+                                id="lga"
+                                label="lga"
+                                variant="outlined"
+                                className="w-full"
+                                value={values.lga}
+                                onChange={handleChange}>
+                                <option value="none">choose LGA</option>
+                                {ngstates.filter(item=> item.label == values.label)[0]?.lga.map(lga => <option value={lga} key={lga}>{lga}
+                                    
+                                </option>)}
+                            </TextField>
+                            {touched.lga && errors.lga ? <span className="text-xs text-red-400">{errors.lga}</span> : null}
+                        </div>
+                    </div>
+
+
+
 
                     <button type="submit" className="bg-lime-700 text-white px-3 py-2 uppercase rounded-sm">Submit
 
